@@ -1,0 +1,33 @@
+{% extends "app/template.html" %}
+
+{% load static %}
+
+{% block title %}Khaldun AI{% endblock %}
+
+{% block body %}
+<h1 style="text-align: center; font-size: 3vh; margin-top: 20px;">Remaining Credits: {{ request.user.credits }} tokens
+</h1>
+
+<script src="https://cdn.tiny.cloud/1/auafnbcofcvogwyumtkt53m53kdt6v2izlj6trmt7ues1qup/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<div style="text-align: center; margin: 0 auto;">
+    <h2 style="margin-top: 50px;">Artice Name: {{ title }}</h2>
+    <form style="margin: 0 auto; height: 100%; display: block; width: 1000px; max-width: 90%;">
+        <br>
+        <textarea id="default-editor" style="width: 100%; margin: 0 auto;">
+            <center><h1>{{ title }}</h1></center>
+            <br />
+            {% for point, paragraph in content %}
+                <h3 style="text-align: left;">{{ point }}</h3>
+                {{ paragraph }}
+            {% endfor %}
+        </textarea>
+    </form>
+    <script>
+        tinymce.init({
+            selector: 'textarea#default-editor',
+            height: "1000px"
+        });
+    </script>
+</div>
+{% endblock %}

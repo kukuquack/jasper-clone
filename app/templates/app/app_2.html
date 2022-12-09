@@ -1,0 +1,48 @@
+{% extends "app/template.html" %}
+
+{% load static %}
+
+{% block title %}Khaldun AI{% endblock %}
+
+{% block body %}
+<script>
+    function generating() {
+        let inputs = document.getElementsByClassName('mb-3');
+        let length = inputs.length;
+        for (let i = 0; i < length; i++) {
+            inputs[i].style.display = 'none';
+        }
+        document.getElementById('generating-text').style.display = 'block';
+        document.getElementById('generating-text-2').style.display = 'block';
+        document.getElementById('next-button').style.display = 'none';
+    }
+</script>
+<h1 style="text-align: center; font-size: 3vh; margin-top: 20px;">Remaining Credits: {{ request.user.credits }} tokens
+</h1>
+<h3
+    style="font-size: 1.5vh; display: block; margin-left: auto; margin-right: auto; text-align: center; width: 500px; max-width: 80%;">
+    Include the main points of your article/script. Don't forget to add an "Introduction:
+    and
+    "Conclusion" if you need
+    them.</h3>
+<form style="display: block; margin-left: auto; margin-right: auto; text-align: center; width: 500px; max-width: 80%;"
+    method="post" action="{% url 'finish' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="title" class="form-label" style="font-size: 24px;">Article
+            Title:</label>
+        <input type=" text" class="form-control" id="title" style="text-align: center;" value="{{ title }}"
+            name="title">
+    </div>
+    {% for x in points %}
+    <div class="mb-3">
+        <label for="title" class="form-label">Point #{{ x|add:"1" }}:</label>
+        <input type=" text" class="form-control" id="title" style="text-align: center;" name='{{ x|add:"1" }}'>
+    </div>
+    {% endfor %}
+    <h1 style="text-align: center; display: none; margin: 50px;" id="generating-text">Generating...</h1>
+    <h6 style="text-align: center; display: none; margin: 50px;" id="generating-text-2">This will take a few moments
+        depending on the number of points.</h6>
+    <button type="submit" class="btn btn-primary" onclick="generating()" id="next-button">Next</button>
+</form>
+{% endblock %}

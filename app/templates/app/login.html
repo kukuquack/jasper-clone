@@ -1,0 +1,30 @@
+{% extends "app/template.html" %}
+
+{% load static %}
+
+{% block title %}Khaldun AI{% endblock %}
+
+{% block body %}
+<h1 style="text-align: center; font-size: 12vh; margin-top: 50px; margin-bottom: 100px;">Log In</h1>
+{% if message %}
+<div class="alert alert-danger" role="alert"
+    style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px; width: 500px; max-width: 100%;">
+    {{ message }}
+</div>
+{% endif %}
+<form action="{% url 'login_view' %}" method="post"
+    style="width: 500px; max-width: 70%;display: block; margin-left: auto; margin-right: auto; font-weight: 500; font-size: 24px;">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+        <div id="emailHelp" class="form-text" style="font-size: 18px; color: grey;">One is provided when you sign up
+            with us!</div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Log In</button>
+</form>
+{% endblock %}

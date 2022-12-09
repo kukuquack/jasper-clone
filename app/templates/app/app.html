@@ -1,0 +1,27 @@
+{% extends "app/template.html" %}
+
+{% load static %}
+
+{% block title %}Khaldun AI{% endblock %}
+
+{% block body %}
+<h1 style="text-align: center; font-size: 3vh; margin-top: 20px;">Remaining Credits: {{ request.user.credits }} tokens
+</h1>
+
+<form style="display: block; margin-left: auto; margin-right: auto; text-align: center; width: 500px; max-width: 80%;"
+    method="post" action="{% url 'app_next' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="title" class="form-label">Article
+            Title</label>
+        <input type=" text" class="form-control" id="title" style="text-align: center;" name="title">
+    </div>
+    <div class="mb-3">
+        <label for="number" class="form-label">Number of Main Points:</label>
+        <input type="number" class="form-control" id="number" minvalue="1" value="5"
+            style="width: 70px; display: block; margin-left: auto; margin-right: auto; text-align: center;"
+            name="main-points">
+    </div>
+    <button type="submit" class="btn btn-primary">Next</button>
+</form>
+{% endblock %}

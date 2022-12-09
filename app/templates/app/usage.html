@@ -1,0 +1,24 @@
+{% extends "app/template.html" %}
+
+{% load static %}
+
+{% block title %}Khaldun AI{% endblock %}
+
+{% block body %}
+<h1 style="text-align: center; font-size: 12vh; margin-top: 50px;">Usage</h1>
+<p style="text-align: center; font-size: 25px; margin-top: 60px; margin: 50px;">1. Firstly, you type the
+    article/script's
+    title and the number of paragraphs/main points you want.</p>
+<img src="{% static 'app/usage-1.png' %}"
+    style="display: block; margin-left: auto; margin-right: auto; max-width: 100%;">
+
+<p style="text-align: center; font-size: 25px; margin-top: 60px; margin: 50px;">2. After clicking 'Next', you'll be give
+    a page that shows you a list of input fields to input your main
+    points. These can also take the form of: #DATE: EVENT.</p>
+<img src="{% static 'app/usage-3.png' %}"
+    style="display: block; margin-left: auto; margin-right: auto; max-width: 100%;">
+
+<p style="text-align: center; font-size: 25px; margin-top: 60px; margin: 50px;">3. Then, you'll soon
+    see a full article/script based on your input in seconds! You can edit it and save it from the bar above. Enjoy!</p>
+
+{% endblock %}
